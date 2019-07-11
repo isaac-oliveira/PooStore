@@ -1,32 +1,45 @@
 package poostore.ufs.br;
 
 import java.util.Scanner;
+import poostore.ufs.br.util.Textos;
 
-/**
- *
+/** 
+ * Classe Principal
  * @author isaac
  */
 public class PooStore {
-
+    private static Scanner entrada;
+    
     /**
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        Scanner input = new Scanner(System.in);
+        entrada = new Scanner(System.in);
         
-        System.out.println("Escolha uma opção:\n" +
-                "   1. Listar todos os produtos cadastrados\n" +
-                "   2. Listar os produtos disponíveis no estoque\n" +
-                "   3. Listar todos os produtos esgotados no estoque\n" +
-                "   4. Aumentar a quantidade de produtos no estoque\n" +
-                "   5. Cadastrar um cliente\n" +
-                "   6. Listar os clientes cadastrados\n" +
-                "   7. Cadastrar vendas\n" +
-                "   8. Listar todas as vendas\n" +
-                "   9. Listar compras de um determinado cliente\n" + 
-                "   10. Sair do programa");
+        int opcao = 0;
+        while(opcao != 10) {
+            System.out.println(Textos.OPCOES_MENU);
+            System.out.print(Textos.DIGITAR_OPCAO_DESEJADA);
+
+            opcao = validarOpcao(entrada.nextInt());
+             
+            //código vem aqui
+            
+            System.out.print(Textos.MOSTRAR_MENU_DENOVO);
+            entrada.next();
+        }
+    }
+    /** 
+     * Função responsável por validar a opção selecionada e solicitar uma nova entrada quando for inválida
+     * @param opcao é o valor digitado pelo usuário
+     * @return retorna uma opção válida do tipo int
+    */
+    public static int validarOpcao(int opcao) {
+        if(opcao >= 1 && opcao <= 10) 
+            return opcao;
         
-        System.out.print("Digite a opção desejada: ");
-        int opcao = input.nextInt();
+        System.out.println(Textos.OPCAO_INVALIDA);
+        System.out.print(Textos.DIGITAR_OPCAO_DESEJADA);
+        return validarOpcao(entrada.nextInt());
     }
 }
