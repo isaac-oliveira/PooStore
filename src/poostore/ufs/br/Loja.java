@@ -63,8 +63,9 @@ public class Loja {
     public void listarTodosClientes() {
         System.out.println("Listar todos os clientes");
     }
+    
     /**
-     * Função que llista todos os produtos e também pode filtrar os que estão no estoque 
+     * Função que lista todos os produtos e também pode filtrar os que estão no estoque 
      * @param noEstoque filtro dos produtos que estão e não estão no estoque
      */
     public void listarTodosProdutos(boolean noEstoque) {
