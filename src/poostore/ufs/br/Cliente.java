@@ -17,7 +17,7 @@ public class Cliente {
         return cpf;
     }
     
-    public int setCpf(int cpf){
+    public void setCpf(int cpf){
         this.cpf = cpf;
     }
 

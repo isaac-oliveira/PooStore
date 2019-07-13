@@ -7,6 +7,19 @@ import poostore.ufs.br.*;
  */
 public class List {
     /**
+     * Função para verificar se o cliente já foi cadastrado
+     * @param lista lista de clientes 
+     * @param cliente cliente a ser verificado se está na lista pelo cpf
+     * @return um boolean indicando se o cliente já foi cadastrado
+     */
+    public static boolean contemCliente(Cliente[] lista, Cliente cliente) {
+        //for(Cliente c : lista) 
+            //if(c.getCpf() == cliente.getCpf()) return true;
+               
+        return false;
+    }
+    
+    /**
      * Função para adicionar um novo Cliente na lista
      * @param lista lista aonde vamos adicionar o novo cliente
      * @param elemento cliente que será adicionado na lista
