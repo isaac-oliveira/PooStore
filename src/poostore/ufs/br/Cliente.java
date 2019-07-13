@@ -11,6 +11,15 @@ public class Cliente {
     
     private int codigo;
     private String nome;
+    private int cpf;
+    
+    public int getCpf(){
+        return cpf;
+    }
+    
+    public int setCpf(int cpf){
+        this.cpf = cpf;
+    }
 
     public int getCodigo() {
         return codigo;
