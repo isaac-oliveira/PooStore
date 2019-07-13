@@ -15,7 +15,7 @@ public class PooStore {
      */
     public static void main(String[] args) {
         entrada = new Scanner(System.in);
-        
+        Loja loja = new Loja();
         int opcao = 0;
         while(opcao != 8) {
             System.out.println(Textos.OPCOES_MENU);
@@ -23,7 +23,7 @@ public class PooStore {
 
             opcao = validarOpcao(entrada.nextInt());
              
-            //código vem aqui      
+            loja.setOpcao(opcao);
             
             if(opcao != 8) {
                 System.out.print(Textos.REVER_MENU);
