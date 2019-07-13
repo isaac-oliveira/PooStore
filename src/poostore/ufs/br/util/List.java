@@ -13,8 +13,34 @@ public class List {
      * @return um boolean indicando se o cliente já foi cadastrado
      */
     public static boolean contemCliente(Cliente[] lista, Cliente cliente) {
-        //for(Cliente c : lista) 
-            //if(c.getCpf() == cliente.getCpf()) return true;
+        for(Cliente c : lista) 
+            if(c.getCpf() == cliente.getCpf()) return true;
+               
+        return false;
+    }
+    
+    /**
+     * Função para verificar se o produto já foi cadastrado
+     * @param lista lista de produtos 
+     * @param produto produto a ser verificado se está na lista pelo nome
+     * @return um boolean indicando se o produto já foi cadastrado
+     */
+    public static boolean contemProduto(Produto[] lista, Produto produto) {
+        for(Produto p : lista) 
+            if(p.getNome().equalsIgnoreCase(produto.getNome())) return true;
+               
+        return false;
+    }
+    
+    /**
+     * Função para verificar se o cliente já foi cadastrado
+     * @param lista lista de clientes 
+     * @param cliente cliente a ser verificado se está na lista pelo cpf
+     * @return um boolean indicando se o cliente já foi cadastrado
+     */
+    public static boolean contemVenda(Cliente[] lista, Cliente cliente) {
+        for(Cliente c : lista) 
+            if(c.getCpf() == cliente.getCpf()) return true;
                
         return false;
     }
