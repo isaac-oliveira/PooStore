@@ -1,10 +1,15 @@
 package poostore.ufs.br;
 
+import poostore.ufs.br.util.List;
+
 /**
  *
  * @author isaac
  */
 public class Loja {
+    private Cliente[] clientes = {};
+    private Produto[] produtos = {};
+    private Venda[] vendas = {};
     private int opcao;
     
     //Constantes
@@ -50,6 +55,7 @@ public class Loja {
     
     public void cadastrarCliente() {
         System.out.println("Cadastrar Cliente");
+        
     }
     
     public void cadastrarProdutos() {
