@@ -1,13 +1,13 @@
 package poostore.ufs.br;
 
-import poostore.ufs.br.util.List;
+import poostore.ufs.br.util.Lista;
 
 /**
  *
  * @author isaac
  */
 public class Loja {
-    private Cliente[] clientes = {};
+    private Cliente[] clientes = { new Cliente(), new Cliente() };
     private Produto[] produtos = {};
     private Venda[] vendas = {};
     private int opcao;
@@ -48,37 +48,71 @@ public class Loja {
                 break;
             case LISTAR_TODAS_VENDAS:
                 listarTodasVendas();
-                break;
-                
+                break;        
         }
     }
     
     public void cadastrarCliente() {
-        System.out.println("Cadastrar Cliente");
-        
+        System.out.println("\nCadastrar Cliente");
     }
     
     public void cadastrarProdutos() {
-        System.out.println("Cadastrar Produtos");
+        System.out.println("\nCadastrar Produtos");
     }
     
     public void cadastrarVendas() {
-         System.out.println("Cadastrar Vendas");       
+         System.out.println("\nCadastrar Vendas");       
     }
     
     public void listarTodosClientes() {
-        System.out.println("Listar todos os clientes");
+        System.out.println("\n----- Lista de todos os clientes -----");
+        for(Cliente cliente : clientes) 
+            System.out.println(cliente.toString());
+        
+        if(Lista.isVazio(clientes)) 
+            System.out.println("\nNenhum cliente foi encontrado");
     }
     
     /**
-     * Função que lista todos os produtos e também pode filtrar os que estão no estoque 
-     * @param noEstoque filtro dos produtos que estão e não estão no estoque
+     * Função que de acordo com 'noEstoque' pode listar todos os produtos ou filtrar os que estão no estoque 
+     * @param noEstoque se for 'true' ele vai listar somente os produtos que estão no estoque, caso contrário vai listar todos 
      */
     public void listarTodosProdutos(boolean noEstoque) {
-        System.out.println(noEstoque ? "Listar todos os produtos no estoque" : "Listar todos os produtos");
+        System.out.println(noEstoque ? 
+                "\n----- Lista de todos os produtos no estoque -----" : 
+                "\n----- Lista de todos os produtos -----");
+        
+        Produto[] filtro = noEstoque ?  
+                filtrarProduto(produtos) : 
+                produtos;
+        
+        for(Produto produto : filtro) 
+            System.out.println(produto.toString());
+        
+        if(Lista.isVazio(filtro)) 
+            System.out.println("\nNenhum produto foi encontrado");
     }
     
+    /**
+     * Filtra os produtos que estão no estoque
+     * @param produtos lista de produtos a ser filtrada
+     * @return lista dos produtos no estoque
+     */
+    public Produto[] filtrarProduto(Produto[] produtos) {
+        Produto[] filtro = {};
+        for(Produto produto : produtos)
+            if(produto.getQuantidade() > 0)
+                filtro = Lista.addProduto(filtro, produto);
+        
+        return filtro;
+    } 
+    
     public void listarTodasVendas() {
-        System.out.println("Listar todas as vendas");
+        System.out.println("\n----- Lista de todas as vendas -----");
+        for(Venda venda : vendas)
+            System.out.println(venda.toString());
+        
+        if(Lista.isVazio(vendas)) 
+            System.out.println("\nNenhuma venda foi encontrada");
     }
 }

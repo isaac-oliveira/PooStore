@@ -11,7 +11,6 @@ public class Item {
     public Produto getProdutoComprado() {
         return produtoComprado;
     }
-
     public void setProdutoComprado(Produto produtoComprado) {
         this.produtoComprado = produtoComprado;
     }
@@ -22,7 +21,5 @@ public class Item {
 
     public void setQuantidadeVendida(int quantidadeVendida) {
         this.quantidadeVendida = quantidadeVendida;
-    }
-    
-    
+    } 
 }

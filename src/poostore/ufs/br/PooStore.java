@@ -1,7 +1,6 @@
 package poostore.ufs.br;
 
 import java.util.Scanner;
-import poostore.ufs.br.util.List;
 import poostore.ufs.br.util.Textos;
 
 /** 
