@@ -1,5 +1,6 @@
 package poostore.ufs.br;
 
+import java.util.Scanner;
 import poostore.ufs.br.util.Lista;
 
 /**
@@ -7,7 +8,9 @@ import poostore.ufs.br.util.Lista;
  * @author isaac
  */
 public class Loja {
-    private Cliente[] clientes = { new Cliente(), new Cliente() };
+    private Scanner entrada = new Scanner(System.in);
+
+    private Cliente[] clientes = {};
     private Produto[] produtos = {};
     private Venda[] vendas = {};
     private int opcao;
@@ -20,7 +23,6 @@ public class Loja {
     private final int LISTAR_TODOS_PRODUTOS = 5;
     private final int LISTAR_TODOS_PRODUTOS_ESTOQUE = 6;
     private final int LISTAR_TODAS_VENDAS = 7;
-
 
     public int getOpcao() {
         return opcao;
@@ -66,11 +68,22 @@ public class Loja {
     
     public void listarTodosClientes() {
         System.out.println("\n----- Lista de todos os clientes -----");
-        for(Cliente cliente : clientes) 
-            System.out.println(cliente.toString());
-        
-        if(Lista.isVazio(clientes)) 
-            System.out.println("\nNenhum cliente foi encontrado");
+        Lista.printLista(clientes, "Nenhum cliente encontrado");
+        if(!Lista.isVazio(clientes)) opcaoListarVendaPorCliente();
+    }
+    
+    public void opcaoListarVendaPorCliente() {
+        System.out.println("\nDeseja listar as compras de um determinado cliente?");
+        System.out.print("Digite S para sim ou qualquer coisa para Não: ");
+        if(entrada.next().equalsIgnoreCase("S")) 
+            listarVendaPorCliente();
+    }
+    
+    public void listarVendaPorCliente() {
+        System.out.print("Então digite o código do cliente: ");
+            Venda[] filtrada = Lista.encontreVendasPorCodigoCliente(vendas, entrada.nextInt());
+            System.out.println("\n----- Lista das compras do cliente -----");
+            Lista.printLista(filtrada, "Nenhuma compra encontrada");
     }
     
     /**
@@ -83,14 +96,11 @@ public class Loja {
                 "\n----- Lista de todos os produtos -----");
         
         Produto[] filtro = noEstoque ?  
-                filtrarProduto(produtos) : 
+                filtrarProdutos(produtos) : 
                 produtos;
         
-        for(Produto produto : filtro) 
-            System.out.println(produto.toString());
-        
-        if(Lista.isVazio(filtro)) 
-            System.out.println("\nNenhum produto foi encontrado");
+        Lista.printLista(filtro, "Nenhum produto encontrado");
+        if(!Lista.isVazio(filtro)) aumentarQuantidadeProduto();
     }
     
     /**
@@ -98,7 +108,7 @@ public class Loja {
      * @param produtos lista de produtos a ser filtrada
      * @return lista dos produtos no estoque
      */
-    public Produto[] filtrarProduto(Produto[] produtos) {
+    public Produto[] filtrarProdutos(Produto[] produtos) {
         Produto[] filtro = {};
         for(Produto produto : produtos)
             if(produto.getQuantidade() > 0)
@@ -107,12 +117,23 @@ public class Loja {
         return filtro;
     } 
     
+    public void aumentarQuantidadeProduto() {
+        System.out.println("\nDeseja aumentar a quantidade de algum produto?");
+        System.out.print("Digite S para sim ou alguma outra coisa para não: ");
+        if(entrada.next().equalsIgnoreCase("S")) {
+            System.out.print("Digite o código do produto a ser alterado: ");
+            int codigoProduto = entrada.nextInt();
+            
+            System.out.print("Agora digite quanto desse produto a mais foi adicionado: ");
+            int quantidadeAMais = entrada.nextInt();
+            
+            produtos = Lista.aumentarQuantidade(produtos, codigoProduto, quantidadeAMais);
+            System.out.println("\nOperação realizada com sucesso!");
+        }
+    }
+    
     public void listarTodasVendas() {
         System.out.println("\n----- Lista de todas as vendas -----");
-        for(Venda venda : vendas)
-            System.out.println(venda.toString());
-        
-        if(Lista.isVazio(vendas)) 
-            System.out.println("\nNenhuma venda foi encontrada");
+        Lista.printLista(vendas, "\nNenhuma venda encontrada");
     }
 }

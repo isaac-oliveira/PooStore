@@ -95,4 +95,34 @@ public class Lista {
     public static boolean isVazio(Object[] lista) {
         return lista.length == 0;
     }
+    
+    /**
+     * Devolve uma lista com as compras do cliente com o código passado pelo parametro.
+     * @param lista lista das vendas a ser filtrada
+     * @param codigoCliente código cliente que será usado como query
+     * @return lista de venda de determinado cliente
+     */
+    public static Venda[] encontreVendasPorCodigoCliente(Venda[] lista, int codigoCliente) {
+        Venda[] filtrada = {};
+        for(Venda venda : lista)
+            if(venda.getCliente().getCodigo() == codigoCliente)
+                filtrada = addVenda(filtrada, venda);
+        
+        return filtrada;
+    }
+    
+    public static Produto[] aumentarQuantidade(Produto[] lista, int codigoProduto, int quantidadeAMais) {
+        for(Produto produto : lista) 
+            if(produto.getCodigoProduto() == codigoProduto)
+                produto.setQuantidade(produto.getQuantidade() + quantidadeAMais);
+        
+        return lista;
+    }
+    
+    public static void printLista(Object[] lista, String placeHolder) {
+        for(Object object : lista)
+            System.out.println(object.toString());
+        
+        if(isVazio(lista)) System.out.println(placeHolder);
+    }
 }

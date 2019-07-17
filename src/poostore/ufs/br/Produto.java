@@ -22,7 +22,7 @@ public class Produto {
         return codigoProduto;
     }
 
-    public void setCodigoProduto(int codigoProduto) {
+    private void setCodigoProduto(int codigoProduto) {
         this.codigoProduto = codigoProduto;
     }
 
@@ -48,5 +48,10 @@ public class Produto {
 
     public void setQuantidade(int quantidade) {
         this.quantidade = quantidade;
-    }  
+    }
+
+    @Override
+    public String toString() {
+        return codigoProduto + " - Nome: " + nome + ", Preço de venda: " + precoVenda + ", Quantidade: " + quantidade;
+    }
 }

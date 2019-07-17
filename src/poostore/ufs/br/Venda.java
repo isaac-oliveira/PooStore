@@ -21,7 +21,7 @@ public class Venda {
         return codigoVenda;
     }
 
-    public void setCodigoVenda(int codigoVenda) {
+    private void setCodigoVenda(int codigoVenda) {
         this.codigoVenda = codigoVenda;
     }
 
@@ -47,5 +47,14 @@ public class Venda {
 
     public void setCliente(Cliente cliente) {
         this.cliente = cliente;
+    }  
+
+    @Override
+    public String toString() {
+        return codigoVenda + 
+                " - Data da venda: " + dataVenda + 
+                ", Item comprado: " + itensVenda.getProdutoComprado().getNome() + 
+                " x " + itensVenda.getQuantidadeVendida() + 
+                ", Cliente: {" + cliente.toString() + "}";
     }   
 }
