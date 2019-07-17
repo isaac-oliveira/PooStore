@@ -14,6 +14,7 @@ public class Loja {
     private Produto[] produtos = {};
     private Venda[] vendas = {};
     private int opcao;
+   private Scanner entrada = new Scanner(System.in);
     
     //Constantes
     private final int CADASTRAR_CLIENTES = 1;
@@ -55,15 +56,59 @@ public class Loja {
     }
     
     public void cadastrarCliente() {
-        System.out.println("\nCadastrar Cliente");
+        
+         System.out.println("\n----- Cadastrar Cliente -----");
+         System.out.print("Digite o CPF do cliente: ");
+         int cpf = entrada.nextInt();
+        
+         boolean resp = Lista.contemCliente(clientes, cpf) ;
+       
+         if (resp){
+           System.out.println("\nJá existe um cliente cadastrado com esse CPF !");
+         }
+        
+         else {
+           System.out.print("Digite o nome do cliente: ");
+           String nome = entrada.next();
+           
+          Cliente c = new Cliente();
+          c.setCpf(cpf);
+          c.setNome(nome);
+          
+          Lista.addCliente(clientes, c);
+           
+         }       
+        
     }
     
     public void cadastrarProdutos() {
-        System.out.println("\nCadastrar Produtos");
+        System.out.println("\n----- Cadastrar Produtos -----");
+        System.out.print("Digite o nome do produto: ");
+        String nome = entrada.next();
+        
+        boolean resp = Lista.contemProduto(produtos, nome);
+        
+        if (resp){
+            System.out.println("\nJá existe um produto cadastrado com esse nome !");
+        }
+        
+        else{
+            System.out.print("Preço de venda: R$");
+            float preco = entrada.nextFloat();
+            
+            System.out.print("Quantidade: ");
+            int qtd = entrada.nextInt();
+            
+            Produto p = new Produto();
+            p.setPrecoVenda(preco);
+            p.setQuantidade(qtd);
+            
+            Lista.addProduto(produtos, p);
+        }
     }
     
     public void cadastrarVendas() {
-         System.out.println("\nCadastrar Vendas");       
+         System.out.println("\n----- Cadastrar Vendas -----");       
     }
     
     public void listarTodosClientes() {
