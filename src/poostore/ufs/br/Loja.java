@@ -101,6 +101,7 @@ public class Loja {
             int qtd = entrada.nextInt();
             
             Produto p = new Produto();
+            p.setNome(nome);
             p.setPrecoVenda(preco);
             p.setQuantidade(qtd);
             
@@ -122,7 +123,7 @@ public class Loja {
     
     public void opcaoListarVendaPorCliente() {
         System.out.println("\nDeseja listar as compras de um determinado cliente?");
-        System.out.print("Digite S para sim ou qualquer coisa para Não: ");
+        System.out.print("Digite S para sim ou alguma outra coisa para Não: ");
         if(entrada.next().equalsIgnoreCase("S")) 
             listarVendaPorCliente();
     }
@@ -148,7 +149,7 @@ public class Loja {
                 produtos;
         
         Lista.printLista(filtro, "Nenhum produto encontrado");
-        if(!Lista.isVazio(filtro)) aumentarQuantidadeProduto();
+        if(!Lista.isVazio(filtro)) opcaoAumentarQuantidadeProduto();
     }
     
     /**
@@ -165,19 +166,22 @@ public class Loja {
         return filtro;
     } 
     
-    public void aumentarQuantidadeProduto() {
+    public void opcaoAumentarQuantidadeProduto() {
         System.out.println("\nDeseja aumentar a quantidade de algum produto?");
         System.out.print("Digite S para sim ou alguma outra coisa para não: ");
-        if(entrada.next().equalsIgnoreCase("S")) {
-            System.out.print("Digite o código do produto a ser alterado: ");
-            int codigoProduto = entrada.nextInt();
-            
-            System.out.print("Agora digite quanto desse produto a mais foi adicionado: ");
-            int quantidadeAMais = entrada.nextInt();
-            
-            produtos = Lista.aumentarQuantidade(produtos, codigoProduto, quantidadeAMais);
-            System.out.println("\nOperação realizada com sucesso!");
-        }
+        if(entrada.next().equalsIgnoreCase("S")) 
+            aumentarQuantidadeProduto();
+    }
+    
+    public void aumentarQuantidadeProduto() {
+        System.out.print("Digite o código do produto a ser alterado: ");
+        int codigoProduto = entrada.nextInt();
+
+        System.out.print("Agora digite quanto desse produto a mais foi adicionado: ");
+        int quantidadeAMais = entrada.nextInt();
+
+        produtos = Lista.aumentarQuantidade(produtos, codigoProduto, quantidadeAMais);
+        System.out.println("\nOperação realizada com sucesso!");
     }
     
     public void listarTodasVendas() {
