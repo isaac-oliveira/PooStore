@@ -67,7 +67,7 @@ public class Loja {
          }
         
          else {
-           System.out.print("Digite o nome do cliente: ");
+           System.out.print("Nome do cliente: ");
            String nome = entrada.next();
            
           Cliente c = new Cliente();
@@ -75,6 +75,8 @@ public class Loja {
           c.setNome(nome);
           
           clientes = Lista.addCliente(clientes, c);
+          
+          System.out.println("Cadastro efetuado com sucesso !");
            
          }       
         
@@ -104,6 +106,8 @@ public class Loja {
             
             produtos = Lista.addProduto(produtos, p);
         }
+        
+            System.out.println("Cadastro efetuado com sucesso !");
     }
     
     public void cadastrarVendas() {
