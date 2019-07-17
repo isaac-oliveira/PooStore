@@ -41,10 +41,10 @@ public class Loja {
                 this.listarTodosClientes();
                 break;
             case LISTAR_TODOS_PRODUTOS: 
-                listarTodosProdutos(false);
+                listarProdutos(false);
                 break;
             case LISTAR_TODOS_PRODUTOS_ESTOQUE:
-                listarTodosProdutos(true);
+                listarProdutos(true);
                 break;
             case LISTAR_TODAS_VENDAS:
                 listarTodasVendas();
@@ -77,7 +77,7 @@ public class Loja {
      * Função que de acordo com 'noEstoque' pode listar todos os produtos ou filtrar os que estão no estoque 
      * @param noEstoque se for 'true' ele vai listar somente os produtos que estão no estoque, caso contrário vai listar todos 
      */
-    public void listarTodosProdutos(boolean noEstoque) {
+    public void listarProdutos(boolean noEstoque) {
         System.out.println(noEstoque ? 
                 "\n----- Lista de todos os produtos no estoque -----" : 
                 "\n----- Lista de todos os produtos -----");
