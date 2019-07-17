@@ -1,17 +1,22 @@
 package poostore.ufs.br;
 
 /**
- *
- * @author victor
- * 
  * Classe que irá armazenar os produtos da loja
+ * @author victor
  */
 public class Produto {
-        
+    
+    public static int ultimoCodigo = 0;
+    
     private int codigoProduto;
     private String nome;
     private float precoVenda;
     private int quantidade;
+    
+    public Produto() {
+        Produto.ultimoCodigo += 1;
+        this.setCodigoProduto(Produto.ultimoCodigo);
+    }
 
     public int getCodigoProduto() {
         return codigoProduto;
@@ -43,7 +48,5 @@ public class Produto {
 
     public void setQuantidade(int quantidade) {
         this.quantidade = quantidade;
-    }
-    
-    
+    }  
 }

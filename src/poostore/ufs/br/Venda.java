@@ -1,17 +1,21 @@
 package poostore.ufs.br;
 
 /**
- *
- * @author victor
- * 
  * Classe que irá armazenar as vendas efetuadas
+ * @author victor
  */
 public class Venda {
-
+    public static int ultimoCodigo = 0;
+    
     private int codigoVenda;
     private String dataVenda;
     private Item itensVenda;
     private Cliente cliente;
+    
+    public Venda() {
+        Venda.ultimoCodigo += 1;
+        this.setCodigoVenda(Venda.ultimoCodigo);
+    }
 
     public int getCodigoVenda() {
         return codigoVenda;
@@ -43,7 +47,5 @@ public class Venda {
 
     public void setCliente(Cliente cliente) {
         this.cliente = cliente;
-    }
-    
-    
+    }   
 }

@@ -31,7 +31,7 @@ public class Textos {
     /**
      * Texto para pressionar enter e rever o menu
      */
-    public static final String REVER_MENU = "Pressione Enter para rever o menu";
+    public static final String REVER_MENU = "\nPressione Enter para rever o menu";
     
     /**
      * Texto para o agradecimento quando sair do programa

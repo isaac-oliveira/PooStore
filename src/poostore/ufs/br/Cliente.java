@@ -1,17 +1,20 @@
 package poostore.ufs.br;
 
 /**
- *
- * @author victor
- * 
  * Classe que irá armazenar os clientes da loja
-*/
+ * @author victor
+ */
 
 public class Cliente {    
-    
+    public static int ultimoCodigo = 0;
     private int codigo;
     private String nome;
     private int cpf;
+    
+    public Cliente() {
+        Cliente.ultimoCodigo += 1;
+        this.setCodigo(Cliente.ultimoCodigo);
+    }
     
     public int getCpf(){
         return cpf;
@@ -37,5 +40,8 @@ public class Cliente {
         this.nome = nome;
     }
     
-    
+    @Override
+    public String toString() {
+        return codigo + " - Nome: " + nome + ", CPF: " + cpf;
+    }
 }
