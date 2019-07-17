@@ -9,21 +9,19 @@ public class Textos {
      * Texto do menu inicial
      */
     public static final String OPCOES_MENU = "Escolha uma opção:\n" +
-                "   1. Listar todos os produtos cadastrados\n" +
-                "   2. Listar os produtos disponíveis no estoque\n" +
-                "   3. Listar todos os produtos esgotados no estoque\n" +
-                "   4. Aumentar a quantidade de produtos no estoque\n" +
-                "   5. Cadastrar um cliente\n" +
-                "   6. Listar os clientes cadastrados\n" +
-                "   7. Cadastrar vendas\n" +
-                "   8. Listar todas as vendas\n" +
-                "   9. Listar compras de um determinado cliente\n" + 
-                "   10. Sair do programa";
+            "   1 - Cadastrar cliente\n" +
+            "   2 - Cadastrar produtos\n" +
+            "   3 - Cadastrar vendas\n" +
+            "   4 - Listar todos os clientes\n" +
+            "   5 - Listar todos os produtos\n" +
+            "   6 - Listar todos os produtos no estoque\n" +
+            "   7 - Listar todas as vendas\n" +
+            "   8 - Sair do programa";
     
     /**
      * Texto para digitar a opção desejada
      */
-    public static final String DIGITAR_OPCAO_DESEJADA = "Digite a opção desejada: ";
+    public static final String DIGITAR_OPCAO = "Digite a opção desejada: ";
     
     /**
      * Texto para opções inválidas
@@ -31,7 +29,12 @@ public class Textos {
     public static final String OPCAO_INVALIDA = "Opção inválida!";
     
     /**
-     * Texto para mostrar o menu novamente
+     * Texto para pressionar enter e rever o menu
      */
-    public static final String MOSTRAR_MENU_DENOVO = "Pressione algum caractere e depois aperte Enter para rever o menu";
+    public static final String REVER_MENU = "\nPressione Enter para rever o menu";
+    
+    /**
+     * Texto para o agradecimento quando sair do programa
+     */
+    public static final String AGRADECIMENTO = "\n------ Obrigado por utilizar nosso programa ------\n";
 }

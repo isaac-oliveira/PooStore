@@ -15,31 +15,38 @@ public class PooStore {
      */
     public static void main(String[] args) {
         entrada = new Scanner(System.in);
-        
+        Loja loja = new Loja();
         int opcao = 0;
-        while(opcao != 10) {
+        while(opcao != 8) {
             System.out.println(Textos.OPCOES_MENU);
-            System.out.print(Textos.DIGITAR_OPCAO_DESEJADA);
+            System.out.print(Textos.DIGITAR_OPCAO);
 
             opcao = validarOpcao(entrada.nextInt());
              
-            //código vem aqui
+            loja.setOpcao(opcao);
             
-            System.out.print(Textos.MOSTRAR_MENU_DENOVO);
-            entrada.next();
+            if(opcao != 8) {
+                System.out.print(Textos.REVER_MENU);
+                entrada.nextLine();
+                entrada.nextLine();
+                
+            } else {
+                System.out.println(Textos.AGRADECIMENTO);
+            }
         }
     }
+    
     /** 
      * Função responsável por validar a opção selecionada e solicitar uma nova entrada quando for inválida
      * @param opcao é o valor digitado pelo usuário
-     * @return retorna uma opção válida do tipo int
+     * @return uma opção válida do tipo int
     */
     public static int validarOpcao(int opcao) {
-        if(opcao >= 1 && opcao <= 10) 
+        if(opcao >= 1 && opcao <= 8) 
             return opcao;
         
         System.out.println(Textos.OPCAO_INVALIDA);
-        System.out.print(Textos.DIGITAR_OPCAO_DESEJADA);
+        System.out.print(Textos.DIGITAR_OPCAO);
         return validarOpcao(entrada.nextInt());
     }
 }
