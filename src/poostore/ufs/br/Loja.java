@@ -14,7 +14,6 @@ public class Loja {
     private Produto[] produtos = {};
     private Venda[] vendas = {};
     private int opcao;
-   private Scanner entrada = new Scanner(System.in);
     
     //Constantes
     private final int CADASTRAR_CLIENTES = 1;
@@ -75,7 +74,7 @@ public class Loja {
           c.setCpf(cpf);
           c.setNome(nome);
           
-          Lista.addCliente(clientes, c);
+          clientes = Lista.addCliente(clientes, c);
            
          }       
         
@@ -103,7 +102,7 @@ public class Loja {
             p.setPrecoVenda(preco);
             p.setQuantidade(qtd);
             
-            Lista.addProduto(produtos, p);
+            produtos = Lista.addProduto(produtos, p);
         }
     }
     
