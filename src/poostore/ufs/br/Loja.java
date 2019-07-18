@@ -58,7 +58,7 @@ public class Loja {
         
          System.out.println("\n----- Cadastrar Cliente -----");
          System.out.print("Digite o CPF do cliente: ");
-         int cpf = entrada.nextInt();
+         String cpf = entrada.next();
         
          boolean resp = Lista.contemCliente(clientes, cpf) ;
        
@@ -92,7 +92,7 @@ public class Loja {
         }
         
         else{
-            System.out.print("Preço de venda: R$");
+            System.out.print("Preço de venda: R$ ");
             float preco = entrada.nextFloat();
             
             System.out.print("Quantidade: ");
@@ -124,11 +124,14 @@ public class Loja {
             listarVendaPorCliente();
     }
     
+    /**
+     * Solicita o codigo de algum cliente e listar as compras dele 
+     */
     public void listarVendaPorCliente() {
         System.out.print("Então digite o código do cliente: ");
-            Venda[] filtrada = Lista.encontreVendasPorCodigoCliente(vendas, entrada.nextInt());
-            System.out.println("\n----- Lista das compras do cliente -----");
-            Lista.printLista(filtrada, "Nenhuma compra encontrada");
+        Venda[] filtrada = Lista.encontreVendasPorCodigoCliente(vendas, entrada.nextInt());
+        System.out.println("\n----- Lista das compras do cliente -----");
+        Lista.printLista(filtrada, "Nenhuma compra encontrada");
     }
     
     /**
@@ -145,7 +148,8 @@ public class Loja {
                 produtos;
         
         Lista.printLista(filtro, "Nenhum produto encontrado");
-        if(!Lista.isVazio(filtro)) opcaoAumentarQuantidadeProduto();
+        if(!Lista.isVazio(filtro)) 
+            opcaoAumentarQuantidadeProduto();
     }
     
     /**
@@ -161,7 +165,9 @@ public class Loja {
         
         return filtro;
     } 
-    
+    /**
+     * Pergunta se o usuário gostaria de aumentar a quantidade de algum produto no estoque
+     */
     public void opcaoAumentarQuantidadeProduto() {
         System.out.println("\nDeseja aumentar a quantidade de algum produto?");
         System.out.print("Digite S para sim ou alguma outra coisa para não: ");
@@ -169,17 +175,28 @@ public class Loja {
             aumentarQuantidadeProduto();
     }
     
+    /**
+     * Solicita ao usuário o código do produto, a quantidade que foi adicionada no estoque e atualizar
+     * o produto selecionado pelo código
+     */
     public void aumentarQuantidadeProduto() {
         System.out.print("Digite o código do produto a ser alterado: ");
         int codigoProduto = entrada.nextInt();
+        
+        if(Lista.contemProdutoPorCodigo(produtos, codigoProduto)) {
+            System.out.print("Agora digite quanto desse produto a mais foi adicionado: ");
+            int quantidadeAMais = entrada.nextInt();
 
-        System.out.print("Agora digite quanto desse produto a mais foi adicionado: ");
-        int quantidadeAMais = entrada.nextInt();
-
-        produtos = Lista.aumentarQuantidade(produtos, codigoProduto, quantidadeAMais);
-        System.out.println("\nOperação realizada com sucesso!");
+            produtos = Lista.aumentarQuantidade(produtos, codigoProduto, quantidadeAMais);
+            System.out.println("\nOperação realizada com sucesso!");
+        } else {
+            System.out.println("\nProduto não encontrado!");
+        }
     }
     
+    /**
+     * Lista todas as vendas cadastradas
+     */
     public void listarTodasVendas() {
         System.out.println("\n----- Lista de todas as vendas -----");
         Lista.printLista(vendas, "\nNenhuma venda encontrada");

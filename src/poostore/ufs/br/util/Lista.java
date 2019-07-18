@@ -12,9 +12,10 @@ public class Lista {
      * @param cliente cliente a ser verificado se está na lista pelo cpf
      * @return um booleano indicando se o cliente já foi cadastrado
      */
-    public static boolean contemCliente(Cliente[] lista, int cpf) {
+    
+    public static boolean contemCliente(Cliente[] lista, String cpf) {
         for(Cliente c : lista) 
-            if(c.getCpf() == cpf) 
+            if(c.getCpf().equals(cpf)) 
                 return true;
                
         return false;
@@ -29,6 +30,14 @@ public class Lista {
     public static boolean contemProduto(Produto[] lista, String nome) {
         for(Produto p : lista) 
             if(p.getNome().equalsIgnoreCase(nome)) 
+                return true;
+               
+        return false;
+    }
+    
+    public static boolean contemProdutoPorCodigo(Produto[] lista, int codigo) {
+        for(Produto p : lista) 
+            if(p.getCodigoProduto() == codigo) 
                 return true;
                
         return false;
