@@ -9,18 +9,18 @@ public class Cliente {
     public static int ultimoCodigo = 0;
     private int codigo;
     private String nome;
-    private int cpf;
+    private String cpf;
     
     public Cliente() {
         Cliente.ultimoCodigo += 1;
         this.setCodigo(Cliente.ultimoCodigo);
     }
     
-    public int getCpf(){
+    public String getCpf(){
         return cpf;
     }
     
-    public void setCpf(int cpf){
+    public void setCpf(String cpf){
         this.cpf = cpf;
     }
 

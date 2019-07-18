@@ -53,66 +53,118 @@ public class Loja {
                 break;        
         }
     }
-    
+
+    /**
+     * @author victor
+     */    
     public void cadastrarCliente() {
-        
-         System.out.println("\n----- Cadastrar Cliente -----");
-         System.out.print("Digite o CPF do cliente: ");
-         int cpf = entrada.nextInt();
-        
-         boolean resp = Lista.contemCliente(clientes, cpf) ;
-       
-         if (resp){
-           System.out.println("\nJá existe um cliente cadastrado com esse CPF !");
-         }
-        
-         else {
+        System.out.println("\n----- Cadastrar Cliente -----");
+        System.out.print("Digite o CPF do cliente: ");
+        String cpf = entrada.next();
+
+        if (!Lista.contemCliente(clientes, cpf)){
            System.out.print("Nome do cliente: ");
            String nome = entrada.next();
-           
-          Cliente c = new Cliente();
-          c.setCpf(cpf);
-          c.setNome(nome);
-          
-          clientes = Lista.addCliente(clientes, c);
-          
-          System.out.println("\nCadastro efetuado com sucesso !");
-           
-         }       
+
+           Cliente c = new Cliente();
+           c.setCpf(cpf);
+           c.setNome(nome);
+
+           clientes = Lista.addCliente(clientes, c);
+
+           System.out.println("Cadastro efetuado com sucesso !");
+        } else {
+           System.out.println("\nJá existe um cliente cadastrado com esse CPF !");
+        }       
         
     }
     
+    /**
+    * @author victor
+    */
+
     public void cadastrarProdutos() {
         System.out.println("\n----- Cadastrar Produtos -----");
         System.out.print("Digite o nome do produto: ");
         String nome = entrada.next();
         
-        boolean resp = Lista.contemProduto(produtos, nome);
-        
-        if (resp){
-            System.out.println("\nJá existe um produto cadastrado com esse nome !");
-        }
-        
-        else{
-            System.out.print("Preço de venda: R$");
-            float preco = entrada.nextFloat();
-            
+        if (!Lista.contemProduto(produtos, nome)){
             System.out.print("Quantidade: ");
             int qtd = entrada.nextInt();
             
-            Produto p = new Produto();
-            p.setNome(nome);
-            p.setPrecoVenda(preco);
-            p.setQuantidade(qtd);
+            if(qtd >= 0) {
+                System.out.print("Preço de venda: R$ ");
+                float preco = entrada.nextFloat();
+
+                Produto p = new Produto();
+                p.setNome(nome);
+                p.setPrecoVenda(preco);
+                p.setQuantidade(qtd);
+
+                produtos = Lista.addProduto(produtos, p);
+
+                System.out.println("Cadastro efetuado com sucesso !");
+            } else {
+                System.out.println("Quantidade deve ser maior ou igual a zero!");
+            }
             
-            produtos = Lista.addProduto(produtos, p);
+        } else {
+            System.out.println("\nJá existe um produto cadastrado com esse nome !");
         }
         
-            System.out.println("\nCadastro efetuado com sucesso !");
     }
     
+    /**
+     * @author victor
+     */
     public void cadastrarVendas() { 
          System.out.println("\n----- Cadastrar Vendas -----");
+          
+         System.out.print("Digite a data e horário da venda no formato dd/mm/aaaa hh:mm:ss: ");
+         String data = entrada.next();
+         
+         if (!Lista.contemVenda(vendas, data)){
+             System.out.print("CPF do cliente que efetuou a compra: ");
+             String cpf = entrada.next();
+             
+             Cliente cliente = Lista.encontreClientePorCPF(clientes, cpf);
+             
+             if (cliente != null){
+                 System.out.print("Nome do produto comprado: ");
+                 String nome = entrada.next();
+                 Produto produto = Lista.encontreProdutoPorNome(produtos, nome);
+                 
+                    if(produto != null){
+                        System.out.println("Quantidade do produto comprada: ");
+                        int quantidade = entrada.nextInt();
+                        
+                            if(produto.getQuantidade() >= quantidade){
+                                
+                                produto.setQuantidade(produto.getQuantidade() - quantidade);
+                                
+                                Item item = new Item();
+                                item.setProdutoComprado(produto);
+                                item.setQuantidadeVendida(quantidade);
+                                
+                                Venda venda = new Venda();
+                                venda.setCliente(cliente);
+                                venda.setDataVenda(data);
+                                venda.setItensVenda(item);
+                                
+                                vendas = Lista.addVenda(vendas, venda);
+                                
+                            }else{
+                                System.out.println("Quantidade solicitada superior ao disponível em estoque !");
+                            }
+
+                    }else{
+                        System.out.println("Produto não cadastrado, por gentileza cadastre-o !");
+                    }
+
+             }else{
+                 System.out.println("Cliente não cadastrado, por gentileza cadastre-o !");
+             }
+         }    
     }
     
     public void listarTodosClientes() {
@@ -128,11 +180,14 @@ public class Loja {
             listarVendaPorCliente();
     }
     
+    /**
+     * Solicita o codigo de algum cliente e listar as compras dele 
+     */
     public void listarVendaPorCliente() {
         System.out.print("Então digite o código do cliente: ");
-            Venda[] filtrada = Lista.encontreVendasPorCodigoCliente(vendas, entrada.nextInt());
-            System.out.println("\n----- Lista das compras do cliente -----");
-            Lista.printLista(filtrada, "Nenhuma compra encontrada");
+        Venda[] filtrada = Lista.encontreVendasPorCodigoCliente(vendas, entrada.nextInt());
+        System.out.println("\n----- Lista das compras do cliente -----");
+        Lista.printLista(filtrada, "Nenhuma compra encontrada");
     }
     
     /**
@@ -149,7 +204,8 @@ public class Loja {
                 produtos;
         
         Lista.printLista(filtro, "Nenhum produto encontrado");
-        if(!Lista.isVazio(filtro)) opcaoAumentarQuantidadeProduto();
+        if(!Lista.isVazio(filtro)) 
+            opcaoAumentarQuantidadeProduto();
     }
     
     /**
@@ -165,7 +221,9 @@ public class Loja {
         
         return filtro;
     } 
-    
+    /**
+     * Pergunta se o usuário gostaria de aumentar a quantidade de algum produto no estoque
+     */
     public void opcaoAumentarQuantidadeProduto() {
         System.out.println("\nDeseja aumentar a quantidade de algum produto?");
         System.out.print("Digite S para sim ou alguma outra coisa para não: ");
@@ -173,17 +231,28 @@ public class Loja {
             aumentarQuantidadeProduto();
     }
     
+    /**
+     * Solicita ao usuário o código do produto, a quantidade que foi adicionada no estoque e atualizar
+     * o produto selecionado pelo código
+     */
     public void aumentarQuantidadeProduto() {
         System.out.print("Digite o código do produto a ser alterado: ");
         int codigoProduto = entrada.nextInt();
+        
+        if(Lista.contemProdutoPorCodigo(produtos, codigoProduto)) {
+            System.out.print("Agora digite quanto desse produto a mais foi adicionado: ");
+            int quantidadeAMais = entrada.nextInt();
 
-        System.out.print("Agora digite quanto desse produto a mais foi adicionado: ");
-        int quantidadeAMais = entrada.nextInt();
-
-        produtos = Lista.aumentarQuantidade(produtos, codigoProduto, quantidadeAMais);
-        System.out.println("\nOperação realizada com sucesso!");
+            produtos = Lista.aumentarQuantidade(produtos, codigoProduto, quantidadeAMais);
+            System.out.println("\nOperação realizada com sucesso!");
+        } else {
+            System.out.println("\nProduto não encontrado!");
+        }
     }
     
+    /**
+     * Lista todas as vendas cadastradas
+     */
     public void listarTodasVendas() {
         System.out.println("\n----- Lista de todas as vendas -----");
         Lista.printLista(vendas, "\nNenhuma venda encontrada");

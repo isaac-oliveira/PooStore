@@ -12,9 +12,10 @@ public class Lista {
      * @param cliente cliente a ser verificado se está na lista pelo cpf
      * @return um booleano indicando se o cliente já foi cadastrado
      */
-    public static boolean contemCliente(Cliente[] lista, int cpf) {
+    
+    public static boolean contemCliente(Cliente[] lista, String cpf) {
         for(Cliente c : lista) 
-            if(c.getCpf() == cpf) 
+            if(c.getCpf().equals(cpf)) 
                 return true;
                
         return false;
@@ -34,18 +35,47 @@ public class Lista {
         return false;
     }
     
+    public static boolean contemProdutoPorCodigo(Produto[] lista, int codigo) {
+        for(Produto p : lista) 
+            if(p.getCodigoProduto() == codigo) 
+                return true;
+               
+        return false;
+    }
+    
     /**
      * Função para verificar se o cliente já foi cadastrado
+     * @author victor
      * @param lista lista de clientes 
      * @param cliente cliente a ser verificado se está na lista pelo cpf
      * @return um boolean indicando se o cliente já foi cadastrado
      */
-    public static boolean contemVenda(Venda[] lista, Venda venda) {
+    public static boolean contemVenda(Venda[] lista, String data) {
         for(Venda v : lista) 
-            if(v.getDataVenda().equalsIgnoreCase(venda.getDataVenda()))
+            if(v.getDataVenda().equalsIgnoreCase(data))
                 return true;
                
         return false;
+    }
+    
+    /**
+     * @author victor
+     */
+    public static Cliente encontreClientePorCPF(Cliente[] clientes, String cpf){
+        for(Cliente c : clientes)
+            if(c.getCpf().equalsIgnoreCase(cpf))
+                return c;
+        return null;
+    }
+    
+    /**
+     * @author victor
+     */
+    public static Produto encontreProdutoPorNome(Produto[] produtos, String nome){
+        for(Produto p : produtos)
+            if(p.getNome().equalsIgnoreCase(nome))
+                return p;
+        return null;
     }
     
     /**
