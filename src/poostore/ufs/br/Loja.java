@@ -55,31 +55,24 @@ public class Loja {
     }
     
     public void cadastrarCliente() {
-        
-         System.out.println("\n----- Cadastrar Cliente -----");
-         System.out.print("Digite o CPF do cliente: ");
-         String cpf = entrada.next();
-        
-         boolean resp = Lista.contemCliente(clientes, cpf) ;
-       
-         if (resp){
-           System.out.println("\nJá existe um cliente cadastrado com esse CPF !");
-         }
-        
-         else {
+        System.out.println("\n----- Cadastrar Cliente -----");
+        System.out.print("Digite o CPF do cliente: ");
+        String cpf = entrada.next();
+
+        if (!Lista.contemCliente(clientes, cpf)){
            System.out.print("Nome do cliente: ");
            String nome = entrada.next();
-           
-          Cliente c = new Cliente();
-          c.setCpf(cpf);
-          c.setNome(nome);
-          
-          clientes = Lista.addCliente(clientes, c);
-          
-          System.out.println("Cadastro efetuado com sucesso !");
-           
-         }       
-        
+
+           Cliente c = new Cliente();
+           c.setCpf(cpf);
+           c.setNome(nome);
+
+           clientes = Lista.addCliente(clientes, c);
+
+           System.out.println("Cadastro efetuado com sucesso !");
+        } else {
+           System.out.println("\nJá existe um cliente cadastrado com esse CPF !");
+        }       
     }
     
     public void cadastrarProdutos() {
@@ -87,28 +80,30 @@ public class Loja {
         System.out.print("Digite o nome do produto: ");
         String nome = entrada.next();
         
-        boolean resp = Lista.contemProduto(produtos, nome);
-        
-        if (resp){
-            System.out.println("\nJá existe um produto cadastrado com esse nome !");
-        }
-        
-        else{
-            System.out.print("Preço de venda: R$ ");
-            float preco = entrada.nextFloat();
-            
+        if (!Lista.contemProduto(produtos, nome)){
             System.out.print("Quantidade: ");
             int qtd = entrada.nextInt();
             
-            Produto p = new Produto();
-            p.setNome(nome);
-            p.setPrecoVenda(preco);
-            p.setQuantidade(qtd);
+            if(qtd >= 0) {
+                System.out.print("Preço de venda: R$ ");
+                float preco = entrada.nextFloat();
+
+                Produto p = new Produto();
+                p.setNome(nome);
+                p.setPrecoVenda(preco);
+                p.setQuantidade(qtd);
+
+                produtos = Lista.addProduto(produtos, p);
+
+                System.out.println("Cadastro efetuado com sucesso !");
+            } else {
+                System.out.println("Quantidade deve ser maior ou igual a zero!");
+            }
             
-            produtos = Lista.addProduto(produtos, p);
+        } else {
+            System.out.println("\nJá existe um produto cadastrado com esse nome !");
         }
         
-            System.out.println("Cadastro efetuado com sucesso !");
     }
     
     public void cadastrarVendas() {
