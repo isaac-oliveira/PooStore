@@ -76,7 +76,7 @@ public class Loja {
           
           clientes = Lista.addCliente(clientes, c);
           
-          System.out.println("Cadastro efetuado com sucesso !");
+          System.out.println("\nCadastro efetuado com sucesso !");
            
          }       
         
@@ -108,11 +108,11 @@ public class Loja {
             produtos = Lista.addProduto(produtos, p);
         }
         
-            System.out.println("Cadastro efetuado com sucesso !");
+            System.out.println("\nCadastro efetuado com sucesso !");
     }
     
-    public void cadastrarVendas() {
-         System.out.println("\n----- Cadastrar Vendas -----");       
+    public void cadastrarVendas() { 
+         System.out.println("\n----- Cadastrar Vendas -----");
     }
     
     public void listarTodosClientes() {

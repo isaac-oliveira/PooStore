@@ -36,7 +36,6 @@ public class Lista {
     
     /**
      * Função para verificar se o cliente já foi cadastrado
-     * @deprecated
      * @param lista lista de clientes 
      * @param cliente cliente a ser verificado se está na lista pelo cpf
      * @return um boolean indicando se o cliente já foi cadastrado

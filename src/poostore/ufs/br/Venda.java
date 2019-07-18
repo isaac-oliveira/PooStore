@@ -6,7 +6,6 @@ package poostore.ufs.br;
  */
 public class Venda {
     public static int ultimoCodigo = 0;
-    
     private int codigoVenda;
     private String dataVenda;
     private Item itensVenda;
