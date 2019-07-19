@@ -5,12 +5,13 @@ package poostore.ufs.br;
  * @author victor
  */
 public class Venda {
+
     public static int ultimoCodigo = 0;
     private int codigoVenda;
     private String dataVenda;
     private Item itensVenda;
     private Cliente cliente;
-    
+
     public Venda() {
         Venda.ultimoCodigo += 1;
         this.setCodigoVenda(Venda.ultimoCodigo);
@@ -46,14 +47,14 @@ public class Venda {
 
     public void setCliente(Cliente cliente) {
         this.cliente = cliente;
-    }  
+    }
 
     @Override
     public String toString() {
-        return codigoVenda + 
-                " - Data da venda: " + dataVenda + 
-                ", Item comprado: " + itensVenda.getProdutoComprado().getNome() + 
-                " x " + itensVenda.getQuantidadeVendida() + 
-                ", Cliente: {" + cliente.toString() + "}";
-    }   
+        return "Código " + codigoVenda
+                + " - Data da venda: " + dataVenda
+                + ", Item comprado: " + itensVenda.getProdutoComprado().getNome()
+                + " x " + itensVenda.getQuantidadeVendida()
+                + ", Cliente: {" + cliente.toString() + "}";
+    }
 }

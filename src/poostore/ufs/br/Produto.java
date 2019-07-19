@@ -5,14 +5,14 @@ package poostore.ufs.br;
  * @author victor
  */
 public class Produto {
-    
+
     public static int ultimoCodigo = 0;
-    
+
     private int codigoProduto;
     private String nome;
     private float precoVenda;
     private int quantidade;
-    
+
     public Produto() {
         Produto.ultimoCodigo += 1;
         this.setCodigoProduto(Produto.ultimoCodigo);
@@ -52,6 +52,6 @@ public class Produto {
 
     @Override
     public String toString() {
-        return codigoProduto + " - Nome: " + nome + ", Preço de venda: " + precoVenda + ", Quantidade: " + quantidade;
+        return "Código " + codigoProduto + " - Nome: " + nome + ", Preço de venda: " + precoVenda + ", Quantidade: " + quantidade;
     }
 }
